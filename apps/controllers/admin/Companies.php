@@ -418,10 +418,26 @@ public function __construct()
 		$data['title'] = title." | View Partners";
 		$data['main_heading'] = "Partners";	
 		$data['heading'] = "View Partners";
-		$data["total_rows"] 	=$this->company_model->count_partners($id);
-		$data["results"] 		=$this->company_model->view_partners($id);
+		$data["total_rows"] 	=	$this->company_model->count_partners($id);
+		$data["results"] 		=	$this->company_model->view_partners($id);
 		$this->load->view('admin/partners/view.php', $data);
 	}
 	
+
+	public function add_services($id)
+	{	
+		$data['title'] 			= 	title." | Add Services";
+		$data['main_heading'] 	= 	"Services";	
+		$data['heading'] 		=	"Add Services";
+		$data['partner_id']		=	$id;
+		$data['services']		=	$this->company_model->get_services();
+		$this->load->view('admin/services/add.php', $data);
+	}
+
+	public function store_services()
+	{	
+		print_r($_POST);
+	}
+
 }	
 ?>

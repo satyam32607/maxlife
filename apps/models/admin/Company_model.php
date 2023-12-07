@@ -43,6 +43,21 @@ class Company_model extends CI_Model
 			return $result;
 	
 		} //End of View function
+
+		function get_services()
+		{
+			$this->db->where('is_active', '1');
+			$this->db->from('services');
+			$query = $this->db->get();
+			//echo $this->db->last_query();
+			$result = $query->result();
+			/*echo "<pre>";
+			print_r($result);
+			echo "</pre>";*/
+			
+			return $result;
+	
+		} //End of View function
 		
 		
 		function count_partners($user_id)

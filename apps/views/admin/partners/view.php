@@ -95,8 +95,9 @@
                                     <td><?php echo $row->email; ?></td>
                                     <td><?php echo $row->first_name;?></td>
                                     <td><?php echo $row->mobile_no1; ?></td>
-                                    <td><a href=""><i>Add</i></a>
-                                        <a href=""><i>List</i></a>
+                                    <td><a href="<?php echo base_url();?>admin/companies/add_services/<?php echo $row->user_id; ?>"><i class="fa fa-plus-circle"></i></a>
+                                            &nbsp;&nbsp;
+                                        <a href=""><i class="fa fa-list"></i></a>
                                     </td>
                                     </tr>
                                      <?php 
