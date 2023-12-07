@@ -1,0 +1,112 @@
+/* here you can put your own css to customize and override the theme */
+
+.form-group p {
+    color: red; font-size:13px;
+	}
+	
+label.error {
+    color: red;
+}
+/*.red{
+	color:red;
+}*/
+
+.info
+{
+	background: rgba(33, 150, 243, 0.41);
+    padding: 10px;
+    color: #113995;
+    font-size: 12px;
+    font-weight: bold;
+	margin-bottom:10px;
+}
+ul
+{
+  list-style-type:none;	
+}
+form-control {
+    width: 100%;
+    height: 28px !Important;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #c2cad8;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control, output {
+    font-size: 12px !important;
+    line-height: 1.42857;
+    color: #555;
+    display: block;
+}
+.mt-checkbox, .mt-radio {
+    display: inline-block !important;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 11px;
+    webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+
+#fullpage-loader {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff
+}
+#fullpage-loader .loader-content {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    font-size: 200px;
+    width: 100%;
+    text-align: center
+}
+#fullpage-loader .loader-content #loader-error {
+    font-size: 18px;
+    margin-bottom: 1rem
+}
+#fullpage-loader .fullpage-loader-close {
+    font-size: 18px;
+    margin: 2rem 2rem 0 0
+}
+.drag_disabled{
+    pointer-events: none;
+}
+.action-buttons{
+    pointer-events: all;
+}
+.link_min{
+  position: absolute;
+  display: inline-block;
+  right: 0px;
+  margin-right: 8px;
+}
+.m-0{ margin:0 !important;}
+.m-b-20{ margin-bottom:20px !important;}
+.drag-cur{ cursor:all-scroll !important;}
+
+/* Lightbox Modal */
+#lightboxresponsive img{width:inherit;}
+
+.mypagination a,.mypagination strong{padding:1%;background:#36c6d3;color:#ffffff;margin-left:1%}
+.mypagination strong{color:#000000;}
+.section-border{border-right:1px solid #000000;}
+.youtube-play{font-size:48px;color:red;margin-top:12%;}
+audio{width:100%;}
+.btnsetting{margin-right:5%;}
+..red-border{border:1px solid red;}

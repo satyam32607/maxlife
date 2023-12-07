@@ -1,0 +1,17 @@
+.weight_updated{font-weight:16px;color:green;}
+.m-t-10{margin-top:10px}
+.m-t-15{margin-top:15px}
+.m-t-15{margin-top:20px}
+.tabledrag-changed-warning{color:#3a80d7}
+
+.page-footer .col-md-4{text-align:left}
+.btm-social ul{display:inline-block;}
+
+
+@media (min-width:992px) {
+.page-footer .copyright{text-align:right;}
+.page-footer .btm-social{text-align:center;}
+}
+@media (max-width:991px) {
+.page-footer .col-md-4{text-align:center}	
+}

@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Calibri", sans-serif;
+}
+
+p {
+    margin: 0;
+}
+
+.header {
+    position: relative;
+}
+
+.mail-title {
+    position: absolute;
+    text-align: center;
+    font-size: 13px;
+    color: #b8d6ec;
+    top: 13px;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+}
+
+.user-info {
+    width: 99%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.user-img {
+    width: 48px;
+    margin-right: 20px;
+}
+
+.date {
+    color: #6d686a;
+    font-size: 11px;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+}
+
+.email {
+    color: #6d686a;
+    font-size: 14px;
+    margin: 5px 0;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+}
+
+.reply {
+    font-size: 12px;
+    color: #565757;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+
+.to {
+    font-size: 14px;
+    color: #565757;
+    margin: 10px 0 4px;
+    border-bottom: solid 1px #e8e8e8;
+    padding-bottom: 6px;
+}
+
+.to span {
+    margin-right: 15px;
+}
+
+.replied {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    background: url(../images/arrow.png) no-repeat right;
+}
+
+.replied img {
+    margin-right: 10px
+}
+
+.attachments {
+    border-bottom: solid 1px #e8e8e8;
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.zip {
+    border: solid 1px #787878;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    padding: 0 5px;
+    background: url(../images/attachement-arrow.png) no-repeat;
+    background-position: 210px 16px;
+
+}
+
+.zip img {
+    margin-right: 10px;
+}
+
+.zip-name {
+    font-size: 14px;
+    color: #565757;
+    font-weight: 500;
+    margin-right: 21px;
+}
+
+.zip-size {
+    font-size: 14px;
+    color: #737274;
+}
+
+.email-body {
+    width: 99%;
+    margin-top: 35px;
+    /* background: url(../images/scroll.png) no-repeat top right; */
+    margin-left: auto;
+    overflow: hidden;
+    height: 359px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.email-signature {
+    font-family: 'Times New Roman', Times, serif;
+    color: #1a1a8d;
+    font-size: 19px;
+}
+
+.email-footer{
+    background-image: url(../images/footer.png); height: 45px; background-size: cover; position: relative;
+}
+.footer-time {
+    font-family: 'Roboto', sans-serif;
+    color: #c9c9c9;
+    position: absolute;
+    right: 72px;
+    top: 10px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.footer-date {
+    font-family: 'Roboto', sans-serif;
+    color: #c9c9c9;
+    position: absolute;
+    right: 56px;
+    top: 24px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.user-mail-tag{
+    position: relative; padding-left:9px; padding-right:10px;
+}
+.user-mail-tag:before{
+    position: absolute; content: "<"; width: 9px; height: 20px; left: 0;
+}
+.user-mail-tag:after{
+    position: absolute; content: ">"; width: 9px; height: 20px; right: 0;
+}
+.thanks{color:#000;}
+.ganeshdham{
+    color:#a2a2a2;
+}
