@@ -22,14 +22,14 @@ class Dashboard extends CI_Controller {
         
       
 	    //All Campaigns date wise Results
-	    $campaigns_results = $this->dashboard_model->campaigns_consolidated();
+	   /* $campaigns_results = $this->dashboard_model->campaigns_consolidated();
 	    $data['campaigns_results'] = $campaigns_results;
 	    $data['total_campaigns_results'] = count($campaigns_results);
 	  
 	    //All Consent Candidates date wise Results
 	    $cand_consent_results = $this->dashboard_model->candidates_consent_consolidated();
 	    $data['cand_consent_results'] = $cand_consent_results;
-	    $data['total_consent_candidates'] = count($cand_consent_results);
+	    $data['total_consent_candidates'] = count($cand_consent_results);*/
 	   
 		$this->load->view('admin/dashboard',$data);
 	}

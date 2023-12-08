@@ -86,6 +86,7 @@ class Partners_model extends CI_Model
 			$this->db->order_by('users.email','ASC');
 			$this->db->from('users');
 			$query = $this->db->get();
+			//echo $this->db->last_query();
 			$result = $query->result();
 			foreach ($result as $row) {
 				

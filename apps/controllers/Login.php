@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 				   }else{
 					echo "<script type=\"text/javascript\">
 					localStorage.clear();
-					 window.location.href ='".base_url()."vendors/dashboard';
+					 window.location.href ='".base_url()."partners/dashboard';
 					</script>";
 				   }
 				   
@@ -109,7 +109,7 @@ class Login extends CI_Controller {
 				   }else{
 					echo "<script type=\"text/javascript\">
 					localStorage.clear();
-					 window.location.href ='".base_url()."vendors/dashboard';
+					 window.location.href ='".base_url()."partners/dashboard';
 					</script>";
 				   }
 			     }
