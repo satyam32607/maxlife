@@ -60,6 +60,16 @@ class Company_model extends CI_Model
 		} //End of View function
 		
 		
+		function count_vendors($user_id)
+		{
+			$this->db->where('user_type', 'V');
+			$this->db->where('is_master', '1');
+			$this->db->where('master_id', $user_id);
+			$this->db->from('users');
+			$query = $this->db->get();
+			return $query->num_rows();
+	
+		} //End of Count function\
 		function count_partners($user_id)
 		{
 			$this->db->where('user_type', 'V');
@@ -332,6 +342,37 @@ class Company_model extends CI_Model
 		}     //End of Count function
 		
 	
-	
+	public function store_services()
+	{
+		$partner_id			=	$_POST['partner_id'];
+		$company_id			=	$this->db->where("user_id",$partner_id)->from("users")->get()->result();
+		$company_id			=	$company_id[0]->master_id;
+		$totalServices		=	count($_POST['services']);
+		for ($i=0; $i < $totalServices; $i++) { 
+			$data		=	[
+								'company_id'	=>	$company_id,
+								'user_id'		=>	$partner_id,
+								'service_id'	=>	$_POST['services'][$i],
+								'qty'			=>	$_POST['qty'][$i],
+								'start_date'	=>	$_POST['start_date'][$i],
+								'end_date'		=>	$_POST['end_date'][$i],
+								'remarks'		=>	$_POST['remarks'][$i],
+								'created_by'	=>	$_SESSION['user_id'],
+								'created_on'	=>	date('Y-m-d H:i:s'),
+							];
+
+			$this->db->insert("user_services",$data);
+			$userServiceId	=	$this->db->insert_id();
+			for ($j=1; $j <= $_POST['qty'][$i] ; $j++) { 
+				$serviceDocumentData	=	[
+					'user_service_id'	=>	$userServiceId,
+					'service_id'	=>	$_POST['services'][$i],
+					'created_by'	=>	$_SESSION['user_id'],
+					'created_on'	=>	date('Y-m-d H:i:s'),
+				];
+				$this->db->insert("user_service_documents",$serviceDocumentData);
+			}	
+		}
+	}
 
 }

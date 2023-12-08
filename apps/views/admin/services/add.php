@@ -68,6 +68,7 @@
                           <?php $attributes = array('id' => 'student_form', 'name' => 'student_form', 'class' => 'horizontal-form', 'role' => 'form', 'autocomplete' => 'off');
                           echo form_open_multipart(base_url() . 'admin/companies/store_services', $attributes);
                           ?>
+                          <input type="hidden" name="partner_id" value="<?php echo $partner_id ?>">
                           <div class="form-body">
                             <div class="alert alert-danger display-hide">
                               <button class="close" data-close="alert"></button>

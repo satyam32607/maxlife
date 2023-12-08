@@ -436,7 +436,8 @@ public function __construct()
 
 	public function store_services()
 	{	
-		print_r($_POST);
+		$this->company_model->store_services();
+		$this->load->view('admin/services/add.php', $data);
 	}
 
 }	
