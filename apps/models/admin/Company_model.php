@@ -7,7 +7,7 @@ class Company_model extends CI_Model
 			$this->db->select('*');
 			$this->db->from('users');
 			$this->db->where('users.is_master', '1');
-			$this->db->where('users.is_active', '1');
+			//$this->db->where('users.is_active', '1');
 			$this->db->where('users.user_type', 'C');
 			$this->db->order_by('users.email', 'ASC');
 			$query = $this->db->get();
@@ -16,7 +16,7 @@ class Company_model extends CI_Model
 			foreach ($result as $row) {
 				
 				$row->total_vendors= $this->count_vendors($row->user_id);
-				//$row->total_participants = $this->countparticipants($row->user_id);
+				// $row->total_participants = $this->countparticipants($row->user_id);
 				
 			}
 			/*echo "<pre>";
@@ -26,7 +26,22 @@ class Company_model extends CI_Model
 			return $result;
 	
 		} //End of View function
-
+		
+		function get_services()
+		{
+			$this->db->where('is_active', '1');
+			$this->db->from('services');
+			$query = $this->db->get();
+			//echo $this->db->last_query();
+			$result = $query->result();
+			/*echo "<pre>";
+			print_r($result);
+			echo "</pre>";*/
+			
+			return $result;
+	
+		} //End of View function
+		
 		function view_partners($id)
 		{
 			$this->db->where('user_type', 'V');
@@ -43,22 +58,6 @@ class Company_model extends CI_Model
 			return $result;
 	
 		} //End of View function
-
-		function get_services()
-		{
-			$this->db->where('is_active', '1');
-			$this->db->from('services');
-			$query = $this->db->get();
-			//echo $this->db->last_query();
-			$result = $query->result();
-			/*echo "<pre>";
-			print_r($result);
-			echo "</pre>";*/
-			
-			return $result;
-	
-		} //End of View function
-		
 		
 		function count_vendors($user_id)
 		{
@@ -80,6 +79,8 @@ class Company_model extends CI_Model
 			return $query->num_rows();
 	
 		} //End of Count function\
+
+
 		
 		
 		function countparticipants($user_id)
@@ -342,13 +343,22 @@ class Company_model extends CI_Model
 		}     //End of Count function
 		
 	
-	public function store_services()
+		public function store_services()
 	{
 		$partner_id			=	$_POST['partner_id'];
 		$company_id			=	$this->db->where("user_id",$partner_id)->from("users")->get()->result();
 		$company_id			=	$company_id[0]->master_id;
 		$totalServices		=	count($_POST['services']);
-		for ($i=0; $i < $totalServices; $i++) { 
+		$done				=	0;
+		$already			=	0;
+		for ($i=0; $i < $totalServices; $i++) {
+			$query		=	$this->db->from("user_services")->where("company_id",$company_id)->where("service_id",$_POST['services'][$i])->where("user_id",$partner_id)->
+							where('start_date >=', $_POST['start_date'][$i])->where('end_date <=', $_POST['end_date'][$i])->get();
+			if($query->num_rows()>0)
+			{
+				$already++;
+				continue;
+			} 
 			$data		=	[
 								'company_id'	=>	$company_id,
 								'user_id'		=>	$partner_id,
@@ -372,7 +382,30 @@ class Company_model extends CI_Model
 				];
 				$this->db->insert("user_service_documents",$serviceDocumentData);
 			}	
+			$done++;
 		}
+		$success = $done>0 ? "$done records added" : null; 
+		$failure = $already>0 ? "$already records not added as already exists or other service occupied" : null;  
+		if($success)
+		{
+			$this->session->set_flashdata('success_message', $success);	
+		}
+		if($failure)
+		{
+			$this->session->set_flashdata('warning_message', $failure);	
+		}
+		return $company_id;
+	}
+
+	public function fetch_partner_services($company_id,$partner_id)
+	{
+		$data['partner']				=	$this->db->where("user_id",$partner_id)->from("users")->get()->result()[0];
+		$data['company']				=	$this->db->where("user_id",$company_id)->from("users")->get()->result()[0];
+		$services						=	$this->db->where("user_services.company_id",$company_id)->where("user_services.user_id",$partner_id)->from("user_services")
+											->join('services', 'user_services.service_id = services.service_id', 'inner')->get();
+		$data['results']				=	$services->result();
+		$data['total_rows']				=	$services->num_rows();
+		return $data;
 	}
 
 }

@@ -119,7 +119,7 @@
                                       'id'          => 'qty',
                                       'type'        =>  'number',
                                       'value'       => set_value('qty'),
-                                      'max'         => '5',
+                                      'max'         => '200',
                                       'min'         => '1',
                                       'class'   => 'form-control',
                                       'required'   => 'required',
@@ -186,7 +186,7 @@
                               <div class="row">
 
 
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                   <div class="form-group">
                                     <label class="control-label">Remarks </label>
                                     <textarea name="remarks[]" class="form-control" id="remarks" cols="30" rows="10"></textarea>
@@ -308,7 +308,7 @@
 
       function limitNumberLength(element) {
         const minValue = 1;
-        const maxValue = 5;
+        const maxValue = 200;
 
         if (element.value < minValue) {
           element.value = minValue;

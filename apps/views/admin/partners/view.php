@@ -65,40 +65,87 @@
                     <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-user"></i> <?php echo $heading; ?>: <?php echo '('.$total_rows.')'; ?></div>
+                            <i class="fa fa-user"></i> <?php echo $heading; ?>: <?php echo '('.$num_rows.')'; ?></div>
                     </div>
                     <div class="portlet-body">
                         <div class="table-responsive">
                               <table class="table table-bordered table-striped table-condensed flip-content">
                                 <thead>
-                                    <tr>
-										<th> Srno. </th>
-										<th> Partner name </th>
-										<th> Primary Email</th>
-										<th> Contact person</th>
-										<th> Mobile no1.</th>
-										<th> Action</th>
-									</tr>
+                              <tr>
+                              <th> Srno. </th>
+                              <th> Partner name </th>
+                              <th> Primary Email</th>
+                              <th> Contact person</th>
+                              <th> Primary  Mobile no.</th>
+                              <th> Alternate Mobile no.</th>
+                              <th> Services </th>
+                              <th> Country/State/City</th>
+                              <th>Pincode</th>
+                              <th>Address</th>
+                              <th> Status</th>
+                              <th> Created By</th>
+                              <th> Reg date</th>
+                              <th> Action</th>
+                            
+                            </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-									  if(is_array($results))
-									  {  $srno=0; 
-										 foreach($results as $row) {
-										 $srno++;
-										  
-										
-									  ?>    
+                           <?php 
+                            if(is_array($results))
+                            {  $srno=0; 
+                            foreach($results as $row) {
+                            $srno++;
+
+                            if($row->country_id!='0')
+                              {
+                              $countryrow = get_table_info('country','country_id',$row->country_id);
+                              $country_name= $countryrow->country_name;
+                              }
+                              else
+                              {  $country_name='';
+                              }
+                            
+                              if($row->state_id!='0')
+                              {
+                              $staterow = get_table_info('state','state_id',$row->state_id);
+                              $state_name = '/'.$staterow->state_name;
+                              }
+                              else
+                              {  $state_name='';
+                              }
+                              
+                              if($row->city_id!='0')
+                              {
+                              $cityrow = get_table_info('city','city_id',$row->city_id);
+                              $city_name= '/'.$cityrow->city_name;
+                              }
+                              else
+                              {  $city_name='';
+                              }
+                              
+                              $postuserrow = get_table_info('users','user_id',$row->created_by);
+										        ?>    
                                     <tr>
-                                    <td><?php echo $srno; ?></td>
+                                    <td><?php echo $srno; ?>
+                                    <a href="<?php echo base_url();?>admin/partners/edit/<?php echo $row->user_id; ?>" title="Edit"><i class="fa fa-edit"></i></a></td>
                                     <td><?php echo $row->name; ?></td>
                                     <td><?php echo $row->email; ?></td>
                                     <td><?php echo $row->first_name;?></td>
                                     <td><?php echo $row->mobile_no1; ?></td>
-                                    <td><a href="<?php echo base_url();?>admin/companies/add_services/<?php echo $row->user_id; ?>"><i class="fa fa-plus-circle"></i></a>
+                                    <td><?php echo $row->mobile_no2; ?></td>
+                                    <<td><a href="<?php echo base_url();?>admin/companies/add_services/<?php echo $row->user_id; ?>"><i class="fa fa-plus-circle"></i></a>
                                             &nbsp;&nbsp;
-                                        <a href=""><i class="fa fa-list"></i></a>
+                                        <a href="<?php echo base_url();?>admin/companies/partner_services/<?php echo $row->master_id; ?>/<?php echo $row->user_id; ?>"><i class="fa fa-list"></i></a>
                                     </td>
+                                    <td><?php echo $country_name.$state_name.$city_name; ?></td>
+                                    <td><?php echo $row->pin_code; ?></td>
+                                    <td><?php echo $row->address; ?></td>
+                                    <td><?php if($row->is_active=='1') {?><a class="label label-sm label-success" onclick="return confirm('Do you want to de-activate this Partner ?');" href="<?php echo base_url();?>admin/partners/status/<?php echo $row->user_id; ?>/0"><?php echo  'Active'; ?></a><?php }
+                                     else { ?><a class="label label-sm label-danger" onclick="return confirm('Do you want to activate this Partner ?');" href="<?php echo base_url();?>admin/partners/status/<?php echo $row->user_id; ?>/1"><?php echo 'De-Active';?> </a> <?php } ?></td>
+                                    <td><?php echo $postuserrow->first_name.' '.$postuserrow->last_name; ?></td>
+                                     <td><?php echo date('d M, Y',strtotime($row->created_on));?></td>
+                                    <td><a href="<?php echo base_url();?>admin/partners/edit/<?php echo $row->user_id; ?>" title="Edit"><i class="fa fa-edit"></i></a></td>  
+                      				                                                     
                                     </tr>
                                      <?php 
 									  } 

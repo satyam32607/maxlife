@@ -47,8 +47,8 @@
                 <div class="col-md-8">
                   <ul class="page-breadcrumb breadcrumb">
                     <li> <a href="<?php echo base_url(); ?>">Home</a> <i class="fa fa-circle"></i> </li>
-                    <li> <a href="#"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
-                    <li> <span><?php echo $heading; ?></span> </li>
+                    <li> <a href="<?php echo base_url();?>admin/companies/view_vendors/<?php echo $company->user_id; ?>"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
+                    <li> <span><?php echo $partner->name; ?></span> </li>
                   </ul>
                 </div>
                 <!--<div class="col-md-4"><a href="<?php echo base_url();?>admin/companies/add" class="btn btn-circle btn-success pull-right"> <i class="fa fa-plus"></i><span class="hidden-xs"> Add Company </span> </a></div>-->
@@ -65,7 +65,7 @@
                     <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-user"></i> <?php echo $heading; ?>: <?php echo '('.$num_rows.')'; ?></div>
+                            <i class="fa fa-user"></i> <?php echo $partner->name; ?>: <?php echo '('.$total_rows.')'; ?></div>
                     </div>
                     <div class="portlet-body">
                         <div class="table-responsive">
@@ -73,18 +73,11 @@
                                 <thead>
                                     <tr>
 										<th> Srno. </th>
-										<th> Company name </th>
-										<th> Primary Email</th>
-										<th> Contact person</th>
-										<th> Mobile no1.</th>
-										<th> Partners </th>
-                                        <th> Events </th>
-										<th> Participants</th>
-										<th> Status</th>
-										<th> Created By</th>
-										<th> Reg date</th>
+										<th> Service Name </th>
+										<th> Quantity</th>
+										<th> Start Date</th>
+										<th> End Date</th>
 										<th> Action</th>
-										<th> Shadow</th>
 									</tr>
                                 </thead>
                                 <tbody>
@@ -93,27 +86,18 @@
 									  {  $srno=0; 
 										 foreach($results as $row) {
 										 $srno++;
-										  $postuserrow = get_table_info('users','user_id',$row->created_by);
 										  
 										
 									  ?>    
                                     <tr>
-                                    <td><?php echo $srno; ?>
-                                    <a href="<?php echo base_url();?>admin/companies/edit/<?php echo $row->user_id; ?>" title="Edit"><i class="fa fa-edit"></i></a></td>
-                                    <td><?php echo $row->name; ?></td>
-                                    <td><?php echo $row->email; ?></td>
-                                    <td><?php echo $row->first_name;?></td>
-                                    <td><?php echo $row->mobile_no1; ?></td>
-                 <td><a href="<?php echo base_url();?>admin/companies/view_vendors/<?php echo $row->user_id; ?>" title="View Vemdors"> <span class="label label-sm label-success"> [<?php echo $row->total_vendors; ?>] </span></a></td>
-                                    <td><a href="<?php echo base_url();?>admin/companies/view_vendors/<?php echo $row->user_id; ?>" title="View Vemdors"> <span class="label label-sm label-success"> [<?php //echo $row->total_events; ?>] </span></a></td>
-                                    <td><a href="<?php echo base_url();?>admin/companies/users/<?php echo $row->user_id; ?>" title="View Participants"> <span class="label label-sm label-success"> [<?php //echo $row->total_participants; ?>] </span></a></td>
-                                    <td><?php if($row->is_active=='1') {?><a class="label label-sm label-success" onclick="return confirm('Do you want to de-activate this Company ?');" href="<?php echo base_url();?>admin/companies/status/<?php echo $row->user_id; ?>/0"><?php echo  'Active'; ?></a><?php }
-                                     else { ?><a class="label label-sm label-danger" onclick="return confirm('Do you want to activate this Company ?');" href="<?php echo base_url();?>admin/companies/status/<?php echo $row->user_id; ?>/1"><?php echo 'De-Active';?> </a> <?php } ?></td>
-                                    <td><?php echo $postuserrow->first_name.' '.$postuserrow->last_name; ?></td>
-                                     <td><?php echo date('d M, Y',strtotime($row->created_on));?></td>
-                                    <td><!--<a href="<?php echo base_url();?>admin/companies/edit/<?php echo $row->user_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;
-                      				<a href="<?php echo base_url();?>profile/<?php echo $row->user_id; ?>"><i class="fa fa-search"></i></a>--></td>                                                   
-                                    <td><a href="<?php echo base_url();?>company/dashboard/login_as_shadow/<?php echo $row->user_id; ?>">Shadow</a></td>
+                                    <td><?php echo $srno; ?></td>
+                                    <td><?php echo $row->service_name; ?></td>
+                                    <td><?php echo $row->qty; ?></td>
+                                    <td><?php echo date("M d, Y", strtotime($row->start_date));?></td>
+                                    <td><?php echo date("M d, Y", strtotime($row->end_date)); ?></td>
+                                    <td>
+                                        <a href="<?php echo base_url();?>admin/companies/partner_service_document/<?php echo $row->user_service_id; ?>"><i class="fa fa-list"></i></a>
+                                    </td>
                                     </tr>
                                      <?php 
 									  } 

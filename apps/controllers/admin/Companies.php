@@ -413,13 +413,14 @@ public function __construct()
 	    $this->load->view('admin/company/view_users.php', $data);
 		}
 	
-	public function view_vendors($id)
+		public function view_vendors($id)
 	{
 		$data['title'] = title." | View Partners";
 		$data['main_heading'] = "Partners";	
 		$data['heading'] = "View Partners";
-		$data["total_rows"] 	=	$this->company_model->count_partners($id);
+		$data["num_rows"] 	=	$this->company_model->count_partners($id);
 		$data["results"] 		=	$this->company_model->view_partners($id);
+		$data["company_id"] 	=	$id;
 		$this->load->view('admin/partners/view.php', $data);
 	}
 	
@@ -436,9 +437,25 @@ public function __construct()
 
 	public function store_services()
 	{	
-		$this->company_model->store_services();
-		$this->load->view('admin/services/add.php', $data);
+		$company_id	=		$this->company_model->store_services();
+		redirect(base_url()."admin/companies/partner_services/".$company_id.'/'.$_POST['partner_id']);
 	}
 
+	public function partner_services($id,$partner_id)
+	{
+		$data['title'] 			= 	title." | User Services";
+		$data['main_heading'] 	= 	"Partners";	
+		$data['heading'] 		=	"User Services";
+		$data['partner_id']		=	$partner_id;
+		$data['id']				=	$id;
+		$data					=	array_merge($this->company_model->fetch_partner_services($id,$partner_id),$data);
+
+		$this->load->view('admin/services/user_services.php', $data);
+	}
+
+	public function partner_service_document($id)
+	{
+		echo $id;
+	}
 }	
 ?>
