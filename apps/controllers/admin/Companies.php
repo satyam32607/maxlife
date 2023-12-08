@@ -418,7 +418,7 @@ public function __construct()
 		$data['title'] = title." | View Partners";
 		$data['main_heading'] = "Partners";	
 		$data['heading'] = "View Partners";
-		$data["total_rows"] 	=	$this->company_model->count_partners($id);
+		$data["num_rows"] 	=	$this->company_model->count_partners($id);
 		$data["results"] 		=	$this->company_model->view_partners($id);
 		$data["company_id"] 	=	$id;
 		$this->load->view('admin/partners/view.php', $data);
