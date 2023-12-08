@@ -298,7 +298,6 @@ public function __construct()
 		 
 	}//end of Status  functionality*/
 	
-
 	
 }	
 ?>
