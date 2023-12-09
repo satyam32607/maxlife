@@ -95,6 +95,7 @@ class Services_model extends CI_Model
 							$documentData += [
 								"document_name{$j}" => $_POST[$documentNameField][$i],
 								"document_file_name{$j}" => $file_name,
+								"admin_doc_status"=>"P"
 							];
 						}
 					}

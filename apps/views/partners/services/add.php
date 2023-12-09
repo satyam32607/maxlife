@@ -81,16 +81,20 @@
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name 1 <span class="required"> * </span></label>
-                                                                                    <input type="name" class="form-control" name="document_name_1[]" required id="">
+                                                                                    <input type="name" class="form-control" name="document_name_1[]" value="<?php echo $document->document_name1 ?>" required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document File 1 <span class="required"> * </span></label>
+                                                                                    <?php if(!$document->document_file_name1){ ?>
                                                                                     <input type="file" name="document_file_1[]" required id="">
+                                                                                    <?php } else { ?>
+                                                                                        <a target="_blank" href="<?php echo base_url()."assets/static/2/partners/$partnerId/$document->document_file_name1" ?>"><i class="fa fa-eye"></i></a>
+                                                                                    <?php } ?>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-2">
+                                                                            <!-- <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name 2</label>
                                                                                     <input type="name" class="form-control" name="document_name_2[]" id="">
@@ -113,7 +117,7 @@
                                                                                     <label class="control-label">Document File 3</label>
                                                                                     <input type="file" name="document_file_3[]" id="">
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> -->
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -125,8 +129,6 @@
                                                         <div class="row">
                                                             <div class="col-md-offset-6 col-md-8">
                                                                 <button type="submit" id="submit_btn" class="btn green" value="Submit">Submit</button>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="reset" class="btn default" name="Reset" value="Reset">
                                                             </div>
                                                         </div>
                                                     </div>

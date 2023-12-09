@@ -455,7 +455,18 @@ public function __construct()
 
 	public function partner_service_document($id)
 	{
-		echo $id;
+		$data['title'] 				= 	title." | User Services Documents";
+		$data['main_heading'] 		= 	"Partners";	
+		$data['heading'] 			=	"User Services";
+		$data						=	array_merge($this->company_model->fetch_service_documents($id),$data);
+		$this->load->view('admin/services/user_services_documents.php', $data);
 	}
+
+	public function partner_service_document_action()
+	{
+		$serviceId	=	$this->company_model->partner_service_document_update();
+		redirect(base_url()."admin/companies/partner_service_document/$serviceId");
+	}
+
 }	
 ?>

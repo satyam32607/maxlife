@@ -408,4 +408,25 @@ class Company_model extends CI_Model
 		return $data;
 	}
 
+	public function fetch_service_documents($user_service_id)
+	{
+		$services							=	$this->db->where("user_service_id",$user_service_id)->from("user_service_documents")->get();
+		$data['results']					=	$services->result();
+		$data['partner_id']					=	$this->db->where("user_service_id",$user_service_id)->from("user_services")->get()->result()[0]->user_id;
+		return $data;
+	}
+
+	public function partner_service_document_update()
+	{
+		$data	=	[
+			'admin_doc_status'	=>	$_GET['action'],
+			'admin_remarks'			=>	$_GET['remarks']
+		];
+		$serviceId		=	$this->db->from("user_service_documents")->where("service_document_id",$_GET['document_id'])->get()->result()[0]->user_service_id;
+		$this->db->where("service_document_id",$_GET['document_id'])->update("user_service_documents",$data);
+		return $serviceId;
+	}
+
+
+
 }
