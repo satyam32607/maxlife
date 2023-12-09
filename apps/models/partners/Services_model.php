@@ -89,7 +89,9 @@ class Services_model extends CI_Model
 						$uploadedFile = $_FILES[$fieldName]['name'][$i];
 						$file_name = $uploadedFile;
 						$destination = $uploadPath . $partnerId . '/' . $file_name;
-		
+						if (!is_dir($uploadPath.$partnerId)) {
+							mkdir($uploadPath.$partnerId, 0755, true);
+						}
 						// Move the uploaded file to the destination
 						if (move_uploaded_file($_FILES[$fieldName]['tmp_name'][$i], $destination)) {
 							$documentData += [
