@@ -97,7 +97,7 @@
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Status <span class="required"> * </span></label>
-                                                                                    <input type="text" class="form-control" readonly value="<?php echo $document->admin_doc_status ?>" required id="">
+                                                                                    <input type="text" class="form-control" readonly value="<?php echo $document->admin_doc_status=="A" ? "Approved" : "Not Approved" ?>" required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <!-- <div class="col-md-2">
