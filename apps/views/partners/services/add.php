@@ -81,7 +81,7 @@
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name 1 <span class="required"> * </span></label>
-                                                                                    <input type="name" class="form-control" name="document_name_1[]" value="<?php echo $document->document_name1 ?>" required id="">
+                                                                                    <input type="text" class="form-control" name="document_name_1[]" value="<?php echo $document->document_name1 ?>" required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-2">
@@ -92,6 +92,12 @@
                                                                                     <?php } else { ?>
                                                                                         <a target="_blank" href="<?php echo base_url()."assets/static/2/partners/$partnerId/$document->document_file_name1" ?>"><i class="fa fa-eye"></i></a>
                                                                                     <?php } ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">Status <span class="required"> * </span></label>
+                                                                                    <input type="text" class="form-control" readonly value="<?php echo $document->admin_doc_status ?>" required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <!-- <div class="col-md-2">
