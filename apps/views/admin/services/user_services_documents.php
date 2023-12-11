@@ -92,10 +92,10 @@
                                     <td><?php echo $srno; ?></td>
                                     <td><?php echo $row->document_name1; ?></td>
                                     <td><a target="_blank" href="<?php echo base_url()."assets/static/2/partners/$partner_id/$row->document_file_name1" ?>"><i class="fa fa-eye"></i></a></td>
-                                    <td class="remarks"><textarea style="color: black;" id="" cols="8" rows="3"><?php echo $row->admin_remarks ?></textarea></td>
+                                    <td class="remarks"><textarea style="color: black;" id="" cols="8" rows="3"><?php echo $row->remarks ?></textarea></td>
                                     <td>
-                                        <?php if($row->admin_doc_status!="P"){ ?>
-                                            <span> <?php echo $row->admin_doc_status=="A" ? "Approved" : "Not Approved" ?> </span>
+                                        <?php if($row->doc_status!="P"){ ?>
+                                            <span> <?php echo $row->doc_status=="A" ? "Approved" : "Not Approved" ?> </span>
                                             <?php } else{ ?>
                                             <span style="cursor: pointer;" onclick="submitResponse(this,'<?php echo  $row->service_document_id ?>','A')"><i class="fa fa-check"></i></span>
                                             &nbsp; &nbsp;

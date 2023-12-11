@@ -203,7 +203,7 @@
                                      <td><?php echo date('d M, Y',strtotime($row->created_on));?></td>
 
                                     <td>
-                                      <a href="<?php echo base_url()."partners/services/add_services/".$row->user_service_id ?>"><i class="fa fa-edit"></i></a>
+                                      <a href="<?php echo base_url()."partners/services/add_services/".$row->user_service_id."/".$row->service_id ?>"><i class="fa fa-edit"></i></a>
                                       <!-- <a href=""><i class="fa fa-remove text-danger"></i></a> -->
                                     </td> 
 

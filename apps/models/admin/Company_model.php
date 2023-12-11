@@ -419,8 +419,9 @@ class Company_model extends CI_Model
 	public function partner_service_document_update()
 	{
 		$data	=	[
-			'admin_doc_status'	=>	$_GET['action'],
-			'admin_remarks'			=>	$_GET['remarks']
+			'doc_status'		=>	$_GET['action'],
+			'remarks'			=>	$_GET['remarks'],
+			'doc_approve_date'	=>	date("Y-m-d H:i:s")
 		];
 		$serviceId		=	$this->db->from("user_service_documents")->where("service_document_id",$_GET['document_id'])->get()->result()[0]->user_service_id;
 		$this->db->where("service_document_id",$_GET['document_id'])->update("user_service_documents",$data);

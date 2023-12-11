@@ -61,7 +61,7 @@
                                             <?php $this->load->view("includes/notifications.php"); ?>
                                             <div class="portlet box green">
                                                 <div class="portlet-title">
-                                                    <div class="caption"> <i class="fa fa-user"></i><?php echo $heading; ?> </div>
+                                                    <div class="caption"> <i class="fa fa-user"></i><?php echo $service->service_name; ?> </div>
                                                 </div>
                                                 <div class="portlet-body form">
 

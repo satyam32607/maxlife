@@ -43,13 +43,19 @@ class Services_model extends CI_Model
 		{
 
 			$this->db->from('user_service_documents')->
-			where("user_service_id",$user_service_id);
+			where("user_service_id",$user_service_id)->
+			join('services', 'services.service_id = user_service_documents.service_id', 'inner');
 			$query = $this->db->get();
 
 			$result = $query->result();
 
 			return $result;
 
+		}
+
+		function getServiceObject($service_id)
+		{
+			return $this->db->from('services')->where("service_id",$service_id)->get()->result()[0];
 		}
 
 		function getPartnerId($user_service_id)

@@ -61,7 +61,7 @@ public function __construct()
 
 	
 
-	public function add_services($id)
+	public function add_services($id,$service_id)
 	{
 		
 		$data['title'] = title." | Add Documents";
@@ -71,6 +71,7 @@ public function __construct()
 		$data['heading'] = "Add Documents";
 		$data['documents']		=	$this->services_model->getServices($id);
 		$data['partnerId']		=	$this->services_model->getPartnerId($id);
+		$data['service']		=	$this->services_model->getServiceObject($service_id);
 		$this->load->view('partners/services/add', $data);		
 		
 	}	
