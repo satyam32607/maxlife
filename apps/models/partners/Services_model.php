@@ -103,9 +103,10 @@ class Services_model extends CI_Model
 							$documentData += [
 								"document_name{$j}" => $_POST[$documentNameField][$i],
 								"document_file_name{$j}" => $file_name,
-								"admin_doc_status"=>"P"
+								"doc_status"=>"P"
 							];
 						}
+						$this->session->set_flashdata('success_message', "Documents Submitted");	
 					}
 				}
 		
@@ -115,9 +116,24 @@ class Services_model extends CI_Model
 					$this->db->update('user_service_documents', $documentData);
 				}
 			}
+
 		}
 		
 
-	
+		function getDocumentStatus($user_service_id)
+		{
+		$result					=	$this->db->where("user_service_id",$user_service_id)->where("document_file_name1",null)->from("user_service_documents")->get()->num_rows();
+		$defaultDataResult		=	$this->db->where("user_service_id",$user_service_id)->from("user_service_documents")->get()->num_rows();
+
+		if($result>0 || $defaultDataResult==0)
+		{
+			return "Not Submitted";
+		}
+		else
+		{
+			return "Submitted";
+		}
+
+		}
 
 }

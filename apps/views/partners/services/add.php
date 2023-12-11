@@ -94,12 +94,14 @@
                                                                                     <?php } ?>
                                                                                 </div>
                                                                             </div>
+                                                                            <?php if($document->doc_status!="P" && !empty($document->doc_status)) {?>
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Status <span class="required"> * </span></label>
-                                                                                    <input type="text" class="form-control" readonly value="<?php echo $document->admin_doc_status=="A" ? "Approved" : "Not Approved" ?>" required id="">
+                                                                                    <input type="text" class="form-control" readonly value="<?php echo $document->doc_status=="A" ? "Approved" : "Not Approved" ?>" required id="">
                                                                                 </div>
                                                                             </div>
+                                                                            <?php }?>
                                                                             <!-- <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name 2</label>

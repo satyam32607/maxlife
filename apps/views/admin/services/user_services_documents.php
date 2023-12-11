@@ -84,6 +84,10 @@
 									  if(is_array($results))
 									  {  $srno=0; 
 										 foreach($results as $row) {
+                      if($row->document_name1=="" || !empty($row->document_name1))
+                      {
+                        continue;
+                      }
 										 $srno++;
 										  
 										
@@ -94,7 +98,7 @@
                                     <td><a target="_blank" href="<?php echo base_url()."assets/static/2/partners/$partner_id/$row->document_file_name1" ?>"><i class="fa fa-eye"></i></a></td>
                                     <td class="remarks"><textarea style="color: black;" id="" cols="8" rows="3"><?php echo $row->remarks ?></textarea></td>
                                     <td>
-                                        <?php if($row->doc_status!="P"){ ?>
+                                        <?php if($row->doc_status!="P" && !empty($row->doc_status)){ ?>
                                             <span> <?php echo $row->doc_status=="A" ? "Approved" : "Not Approved" ?> </span>
                                             <?php } else{ ?>
                                             <span style="cursor: pointer;" onclick="submitResponse(this,'<?php echo  $row->service_document_id ?>','A')"><i class="fa fa-check"></i></span>

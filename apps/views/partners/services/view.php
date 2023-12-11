@@ -150,12 +150,15 @@
 
 										<th> Service name </th>
 
-										<th> HSN Code</th>
+										<th> HSN-SAC</th>
 
 										<th> Service Code </th>
+										<th> Start Date </th>
+										<th> End Date </th>
+										<th> Qty </th>
 
 										<th> Short name</th>
-
+                    <th>Document Status</th>
 										<th> Created By</th>
 
 										<th> Created On</th>
@@ -175,7 +178,7 @@
 									  {  $srno=0; 
 
 										 foreach($results as $row) {
-
+   
 										 $srno++;
 
 										
@@ -195,9 +198,12 @@
                                     <td><?php echo $row->hsn_code; ?></td>
 
                                     <td><?php echo $row->service_code; ?></td>
+                                    <td><?php echo $row->start_date; ?></td>
+                                    <td><?php echo $row->end_date; ?></td>
+                                    <td><?php echo $row->qty; ?></td>
 
                                     <td><?php echo $row->service_short_name; ?></td>
-
+                                    <td><?php echo $this->services_model->getDocumentStatus($row->user_service_id) ?></td>
                                     <td><?php echo $postuserrow->first_name.' '.$postuserrow->last_name; ?></td>
 
                                      <td><?php echo date('d M, Y',strtotime($row->created_on));?></td>
