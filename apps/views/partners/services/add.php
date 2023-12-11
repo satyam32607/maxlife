@@ -71,7 +71,9 @@
 
                                                     <div class="form-body">
                                                         <input type="hidden" name="partner_id" value="<?php echo $partnerId ?>">
+                                                        <?php $i=0; ?>
                                                         <?php foreach ($documents as $document) { ?>
+                                                            <?php $i++; ?>
                                                             <br><br>
                                                             <input type="hidden" name="document_id[]" value="<?php echo $document->service_document_id ?>">
                                                             <div class="container mt-5">
@@ -80,13 +82,13 @@
                                                                         <div style="border: solid lightblue 1px;">
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label">Document Name 1 <span class="required"> * </span></label>
+                                                                                    <label class="control-label">Document Name <?php echo $i ?> <span class="required"> * </span></label>
                                                                                     <input type="text" class="form-control" name="document_name_1[]" value="<?php echo $document->document_name1 ?>" required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label">Document File 1 <span class="required"> * </span></label>
+                                                                                    <label class="control-label">Document File <?php echo $i ?> <span class="required"> * </span></label>
                                                                                     <?php if(!$document->document_file_name1){ ?>
                                                                                     <input type="file" name="document_file_1[]" required id="">
                                                                                     <?php } else { ?>

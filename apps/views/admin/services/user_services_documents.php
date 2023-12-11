@@ -84,7 +84,7 @@
 									  if(is_array($results))
 									  {  $srno=0; 
 										 foreach($results as $row) {
-                      if($row->document_name1=="" || !empty($row->document_name1))
+                      if($row->document_name1=="" || empty($row->document_name1))
                       {
                         continue;
                       }
