@@ -69,7 +69,8 @@ class Services_model extends CI_Model
 
 		public function storeUserServices()
 		{
-			$totalDocuments = count($_POST['document_id']);
+			$totalDocuments = count(array_filter($_POST['document_id']));
+			$documentsID	=	array_values(array_filter($_POST['document_id']));
 			$partnerId = $_POST['partner_id'];
 			$uploadPath = './assets/static/2/partners/';
 		
@@ -80,13 +81,12 @@ class Services_model extends CI_Model
 		
 			for ($i = 0; $i < $totalDocuments; $i++) {
 				$documentData = [];
-				$serviceDocumentId = $_POST['document_id'][$i];
-		
+				$serviceDocumentId = $documentsID[$i];
 				// Process document 1, document 2, document 3 dynamically
 				for ($j = 1; $j <= 3; $j++) {
 					$fieldName = "document_file_{$j}";
 					$documentNameField = "document_name_{$j}";
-		
+
 					if (
 						!empty($_POST[$documentNameField][$i]) &&
 						!empty($_FILES[$fieldName]['name'][$i]) &&
@@ -97,6 +97,11 @@ class Services_model extends CI_Model
 						$destination = $uploadPath . $partnerId . '/' . $file_name;
 						if (!is_dir($uploadPath.$partnerId)) {
 							mkdir($uploadPath.$partnerId, 0755, true);
+						}
+						$oldFile	=	$uploadPath . $partnerId . '/' .$this->db->from("user_service_documents")->where('service_document_id', $serviceDocumentId)->get()->result()[0]->document_file_name1;
+						if(file_exists($oldFile))
+						{
+							unlink($oldFile);
 						}
 						// Move the uploaded file to the destination
 						if (move_uploaded_file($_FILES[$fieldName]['tmp_name'][$i], $destination)) {

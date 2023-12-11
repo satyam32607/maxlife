@@ -103,7 +103,7 @@
                                       <?php
                                       
                                       foreach ($services as $service) {
-                                        echo  "<option value='$service->service_id'>$service->service_name - $service->service_code </option>";
+                                        echo  "<option value='$service->service_id'>$service->service_name - $service->hsn_code </option>";
                                       }
                                       ?>
                                     </select>
@@ -189,7 +189,7 @@
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label class="control-label">Remarks </label>
-                                    <textarea name="remarks[]" class="form-control" id="remarks" cols="30" rows="10"></textarea>
+                                    <textarea name="remarks[]" class="form-control" id="remarks" cols="30" rows="4"></textarea>
                                     <?php
                                     echo form_error('remarks');
                                     ?>

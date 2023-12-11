@@ -71,11 +71,12 @@
 
                                                     <div class="form-body">
                                                         <input type="hidden" name="partner_id" value="<?php echo $partnerId ?>">
-                                                        <?php $i=0; ?>
+                                                        <?php $i = 0; ?>
+                                                        <?php $submit = 0; ?>
                                                         <?php foreach ($documents as $document) { ?>
                                                             <?php $i++; ?>
                                                             <br><br>
-                                                            <input type="hidden" name="document_id[]" value="<?php echo $document->service_document_id ?>">
+                                                            <input type="hidden" name="document_id[]" <?php if($document->doc_status=="P" || $document->doc_status=="N" || empty($document->doc_status)) {?> name="document_id[]" value="<?php echo $document->service_document_id ?> <?php } ?>">
                                                             <div class="container mt-5">
                                                                 <div class="row">
                                                                     <div class="col-md-12 offset-lg-3 mt-3">
@@ -83,27 +84,33 @@
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name <?php echo $i ?> <span class="required"> * </span></label>
-                                                                                    <input type="text" class="form-control" name="document_name_1[]" value="<?php echo $document->document_name1 ?>" required id="">
+                                                                                    <input type="text" class="form-control" <?php if($document->doc_status=="P" || $document->doc_status=="N" || empty($document->doc_status)) {?> name="document_name_1[]" <?php } ?> value="<?php echo $document->document_name1 ?>" <?php if($document->doc_status=="P" || $document->doc_status=="A") {?> readonly <?php } ?> required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document File <?php echo $i ?> <span class="required"> * </span></label>
-                                                                                    <?php if(!$document->document_file_name1){ ?>
-                                                                                    <input type="file" name="document_file_1[]" required id="">
+                                                                                    <?php if (!$document->document_file_name1 || $document->doc_status == "N") { ?>
+                                                                                        <?php if ($document->document_file_name1) { ?>
+                                                                                            <a target="_blank" href="<?php echo base_url() . "assets/static/2/partners/$partnerId/$document->document_file_name1" ?>"><i class="fa fa-eye"></i></a>
+                                                                                        <?php } ?>
+                                                                                        <?php if (($document->document_file_name1 && $document->doc_status == "N") || empty($document->document_file_name1)) { ?>
+                                                                                            <input type="file" name="document_file_1[]" required id="">
+                                                                                            <?php $submit = 1; ?>
+                                                                                        <?php } ?>
                                                                                     <?php } else { ?>
-                                                                                        <a target="_blank" href="<?php echo base_url()."assets/static/2/partners/$partnerId/$document->document_file_name1" ?>"><i class="fa fa-eye"></i></a>
+                                                                                        <a target="_blank" href="<?php echo base_url() . "assets/static/2/partners/$partnerId/$document->document_file_name1" ?>"><i class="fa fa-eye"></i></a>
                                                                                     <?php } ?>
                                                                                 </div>
                                                                             </div>
-                                                                            <?php if($document->doc_status!="P" && !empty($document->doc_status)) {?>
-                                                                            <div class="col-md-2">
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">Status <span class="required"> * </span></label>
-                                                                                    <input type="text" class="form-control" readonly value="<?php echo $document->doc_status=="A" ? "Approved" : "Not Approved" ?>" required id="">
+                                                                            <?php if (!empty($document->doc_status)) { ?>
+                                                                                <div class="col-md-2">
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label">Status</label>
+                                                                                        <input type="text" class="form-control" readonly value="<?php if($document->doc_status == "A"){ echo "Approved" ;} elseif($document->doc_status == "N") { echo "Not Approved";} else { echo "Pending";} ?>" required id="">
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <?php }?>
+                                                                            <?php } ?>
                                                                             <!-- <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name 2</label>
@@ -137,9 +144,11 @@
                                                     </div>
                                                     <div class="form-actions">
                                                         <div class="row">
+                                                            <?php if($submit ==1){ ?>
                                                             <div class="col-md-offset-6 col-md-8">
                                                                 <button type="submit" id="submit_btn" class="btn green" value="Submit">Submit</button>
                                                             </div>
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                     <?php echo form_close(); ?>
