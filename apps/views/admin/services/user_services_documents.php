@@ -96,7 +96,7 @@
                                     <td><?php echo $srno; ?></td>
                                     <td><?php echo $row->document_name1; ?></td>
                                     <td><a target="_blank" href="<?php echo base_url()."assets/static/2/partners/$partner_id/$row->document_file_name1" ?>"><i class="fa fa-eye"></i></a></td>
-                                    <td class="remarks"><textarea style="color: black;" id="" cols="8" rows="3"><?php echo $row->remarks ?></textarea></td>
+                                    <td class="remarks"><textarea style="color: black;" cols="8" rows="3"><?php echo $row->remarks ?></textarea></td>
                                     <td>
                                         <?php if($row->doc_status!="P" && !empty($row->doc_status)){ ?>
                                             <span> <?php echo $row->doc_status=="A" ? "Approved" : "Not Approved" ?> </span>
@@ -116,6 +116,7 @@
                                 <input type="hidden" name="document_id" id="document_id">
                                 <input type="hidden" name="action" id="action">
                                 <input type="hidden" name="remarks" id="remarks">
+                                <input type="submit" value="Submit" class="btn btn-primary m-b-20 pull-right" id="button-submit" disabled>
                             </form>
                         </div>
                     </div>
@@ -151,10 +152,17 @@
         }
         else
         {
-            $("#document_id").val(serviceId);
-            $("#action").val(action);
-            $("#remarks").val(remarks);
-            $("#action-form").submit();
+          var htmlValue   = action == "A" ? "Approved" : "Rejected";
+          $(elementObject).parent("td").siblings("td.remarks").find("textarea").prop("disabled",true);
+          $(elementObject).parent("td").html(htmlValue);
+          var documentIdBulk  = $("#document_id").val(); 
+          var actionBulk      = $("#action").val();
+          var remarksBulk     = $("#remarks").val();
+
+          $("#document_id").val(documentIdBulk + ',' + serviceId);
+          $("#action").val(actionBulk + ',' + action);
+          $("#remarks").val(remarksBulk + ',' + remarks);
+          $("#button-submit").prop("disabled",false)
         }
     }
 </script>

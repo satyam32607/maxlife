@@ -834,21 +834,24 @@ class Company_model extends CI_Model
 	public function partner_service_document_update()
 
 	{
-
+		$documentIds		=	array_values(array_filter(explode(",",$_GET["document_id"])));
+		$actions			=	array_values(array_filter(explode(",",$_GET["action"])));
+		$remarks			=	array_values(array_filter(explode(",",$_GET["remarks"])));
+		for ($i=0; $i < count($documentIds) ; $i++) { 
 		$data	=	[
 
-			'doc_status'		=>	$_GET['action'],
+			'doc_status'		=>	$actions[$i],
 
-			'remarks'			=>	$_GET['remarks'],
+			'remarks'			=>	$remarks[$i],
 
 			'doc_approve_date'	=>	date("Y-m-d H:i:s")
 
 		];
 
-		$serviceId		=	$this->db->from("user_service_documents")->where("service_document_id",$_GET['document_id'])->get()->result()[0]->user_service_id;
+		$serviceId		=	$this->db->from("user_service_documents")->where("service_document_id",$documentIds[$i])->get()->result()[0]->user_service_id;
 
-		$this->db->where("service_document_id",$_GET['document_id'])->update("user_service_documents",$data);
-
+		$this->db->where("service_document_id",$documentIds[$i])->update("user_service_documents",$data);
+		}
 		return $serviceId;
 
 	}

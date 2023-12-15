@@ -69,9 +69,10 @@ public function __construct()
 		$data['main_heading'] ="Documents";
 
 		$data['heading'] = "Add Documents";
-		$data['documents']		=	$this->services_model->getServices($id);
-		$data['partnerId']		=	$this->services_model->getPartnerId($id);
-		$data['service']		=	$this->services_model->getServiceObject($service_id);
+		$data['documents']			=	$this->services_model->getServices($id);
+		$data['partnerId']			=	$this->services_model->getPartnerId($id);
+		$data['service']			=	$this->services_model->getServiceObject($service_id);
+		$data['user_service_id']	=	$id;
 		$this->load->view('partners/services/add', $data);		
 		
 	}	
