@@ -8,8 +8,7 @@
                                            <li aria-haspopup="true">
                                             <a href="<?php echo base_url(); ?>admin/dashboard"> <i class="fa fa-home"></i> Dashboard</a>
                                         </li>
-    
-                                        
+            
                                        <!-- <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
                                             <a href="javascript:;"> Masters
                                                 <span class="arrow"></span>
@@ -20,9 +19,7 @@
 													<a href="<?php echo base_url(); ?>admin/categories/view" class="nav-link ">
 														<i class="fa fa-database"></i> View Categories</a>
 												</li>
-												
-											
-                                            </ul>
+								              </ul>
                                         </li>-->
                                         
                                         <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
@@ -85,33 +82,12 @@
                                                 <i class="icon-key"></i> Log Out </a>
                                         </li>
                                         
-                                          <!-- <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
-                                            <a href="javascript:;">
-                                                <i class="fa fa-user"></i> Reports
-                                                <span class="arrow"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-												<li aria-haspopup="true" class=" ">
-													<a href="<?php echo base_url(); ?>admin/language_reports/report_date_wise" class="nav-link ">
-														<i class="fa fa-user"></i> Candidates Language  Report  </a>
-												</li>
-                                                
-                                                <li aria-haspopup="true" class=" ">
-													<a href="<?php echo base_url(); ?>admin/trainingpushreports/push_report" class="nav-link ">
-														<i class="fa fa-user"></i> Data Push Report  </a>
-												</li>
-										   </ul>    
-									    </li>-->
-                                        
-                                    
-                                          
-                                          
-                                          
-                                        
-                                    </ul>
+                                       
+                                     </ul>
                                 </div>
                                  <?php } 
                                   elseif($this->session->userdata('user_type')=='C') { ?>
+                                  
                                   <div class="hor-menu">
                                     <ul class="nav navbar-nav">
                                     <li class="hidden-sm hidden-xs">
@@ -126,7 +102,7 @@
                                      
                                			 <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
                                             <a href="javascript:;">
-                                                <i class="fa fa-bank"></i> Partners
+                                                <i class="fa fa-users"></i> Partners
                                                 <span class="arrow"></span>
                                             </a>
                                             <ul class="dropdown-menu">
@@ -135,52 +111,33 @@
                                                                 <i class="fa fa-tag"></i> View Partners  </a>
                                                         </li>
                                                         
-                                                     
                                                    </ul>
                                                    
                                             </li>
-                                            
-                                            
+
+
                                             <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
                                             <a href="javascript:;">
-                                                <i class="fa fa-bank"></i> Events
+                                                <i class="fa fa-building"></i> Invoices
                                                 <span class="arrow"></span>
                                             </a>
                                             <ul class="dropdown-menu">
-                                                        <li aria-haspopup="true" class=" ">
-                                                            <a href="<?php echo base_url(); ?>company/events/events_master" class="nav-link ">
-                                                                <i class="fa fa-tag"></i> View Master Events  </a>
+
+                                                            <li aria-haspopup="true" class=" ">
+                                                            <a href="<?php echo base_url(); ?>company/invoices/view" class="nav-link ">
+                                                                <i class="fa fa-tag"></i> View Invoices  </a>
                                                         </li>
-                                                        <li aria-haspopup="true" class=" ">
-                                                            <a href="<?php echo base_url(); ?>company/events/view" class="nav-link ">
-                                                                <i class="fa fa-tag"></i> View Events  </a>
-                                                        </li>
-                                                        
-                                                        <li aria-haspopup="true" class=" ">
-                                                            <a href="<?php echo base_url(); ?>company/events/add" class="nav-link ">
-                                                                <i class="icon-pencil"></i> Add Event</a>
-                                                        </li>
-                                                   </ul>
+                   				                 </ul>
                                                    
                                             </li>
-                                            
-                                           
-                                      
-                                            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
-                                            <a href="javascript:;">
-                                                <i class="icon-users"></i> Participants
-                                                <span class="arrow"></span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                        <li aria-haspopup="true" class=" ">
-                                                            <a href="<?php echo base_url(); ?>company/participants/view" class="nav-link ">
-                                                                <i class="fa fa-tag"></i> View Participants </a>
-                                                        </li>
-                                                   </ul>
-                                            </li>
+                                            <li>
+                                            <a href="<?php echo base_url();?>Logout">
+                                                <i class="icon-key"></i> Log Out </a>
+                                             </li>
+                                 
                                     </ul>
                                   </div>
-                                  
+                                   
                                 <?php } 
 								
 								  elseif($this->session->userdata('user_type')=='V') { ?>

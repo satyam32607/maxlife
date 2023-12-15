@@ -26,10 +26,9 @@ public function __construct()
 		  $this->form_validation->set_rules('service_name', 'Service name', 'required|trim');
 		  $this->form_validation->set_rules('service_code', 'Service code', 'required|trim');
 		  $this->form_validation->set_rules('service_short_name', 'Service short name', 'trim');
-		  $this->form_validation->set_rules('hsn_code', 'HSN Code', 'required|trim|min_length[3]|alpha_numeric');
+		  $this->form_validation->set_rules('hsn_code', 'HSN/SAC', 'required|trim|min_length[3]|alpha_numeric');
+		  $this->form_validation->set_rules('service_price', 'Service Price', 'required|trim');
 		  $this->form_validation->set_rules('gst_rate', 'GST Rate', 'required|trim');
-		  $this->form_validation->set_rules('dw_share', 'DW Share', 'required|trim');
-		  $this->form_validation->set_rules('partner_share', 'Partner Share', 'required|trim');
 		  $this->form_validation->set_rules('description', 'Description', 'trim');
 		  
 		if ($this->form_validation->run()) {
@@ -57,7 +56,7 @@ public function __construct()
 			
 	    } //end of add  functionality
 
-	   $this->load->view('admin/services/add.php', $data);
+	   $this->load->view('admin/services/create.php', $data);
 	}
 	
 	
@@ -92,10 +91,9 @@ public function __construct()
 		  $this->form_validation->set_rules('service_name', 'Service name', 'required|trim');
 		  $this->form_validation->set_rules('service_code', 'Service code', 'required|trim');
 		  $this->form_validation->set_rules('service_short_name', 'Service short name', 'trim');
-		  $this->form_validation->set_rules('hsn_code', 'HSN Code', 'required|trim|min_length[3]|alpha_numeric');
+		  $this->form_validation->set_rules('hsn_code', 'HSN/SAC', 'required|trim|min_length[3]|alpha_numeric');
+		  $this->form_validation->set_rules('service_price', 'Service Price', 'required|trim');
 		  $this->form_validation->set_rules('gst_rate', 'GST Rate', 'required|trim');
-		  $this->form_validation->set_rules('dw_share', 'DW Share', 'required|trim');
-		  $this->form_validation->set_rules('partner_share', 'Partner Share', 'required|trim');
 		  $this->form_validation->set_rules('description', 'Description', 'trim');
 		
 		if ($this->form_validation->run()) {

@@ -46,7 +46,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <ul class="page-breadcrumb breadcrumb">
-                    <li> <a href="<?php echo base_url(); ?>dashboard">Dashboard</a> <i class="fa fa-circle"></i> </li>
+                    <li> <a href="<?php echo base_url(); ?>admin/dashboard">Dashboard</a> <i class="fa fa-circle"></i> </li>
                     <li> <a href="#"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
                     <li> <span><?php echo $heading; ?></span> </li>
                   </ul>
@@ -65,7 +65,7 @@
                     <div class="portlet box green">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="fa fa-tree"></i> <?php echo $heading; ?>: <?php echo '('.$num_rows.')'; ?></div>
+                            <i class="fa fa-building"></i> <?php echo $heading; ?>: <?php echo '('.$num_rows.')'; ?></div>
                     </div>
                     <div class="portlet-body">
                         <div class="table-responsive">
@@ -76,15 +76,15 @@
                                         <th> Company </th>
                                         <th> Category </th>
 										<th> Service name </th>
-										<th> HSN Code</th>
-										<th> Service Code </th>
+										<th> HSN/SAC</th>
+                                        <th> Price</th>
+                                        <th> GST% </th>
+										<th> TDS%</th>
+										<th nowrap> Service code </th>
 										<th> Short name</th>
-										<th> GST Rate % </th>
-										<th>DW Share</th>
-										<th>Partner Share</th>
 										<th> Status</th>
 										<th> Created By</th>
-										<th> Created On</th>
+										<th nowrap> Created On</th>
 										<th> Action</th>
 									</tr>
                                 </thead>
@@ -104,11 +104,11 @@
                                     <td><?php echo $row->category_name; ?></td>
                                     <td><?php echo $row->service_name; ?></td>
                                     <td><?php echo $row->hsn_code; ?></td>
+                                     <td><?php echo price_format($row->service_price); ?></td>
+                                    <td><?php echo $row->gst_rate; ?>%</td>
+                                    <td><?php echo $row->tds; ?>%</td>
                                     <td><?php echo $row->service_code; ?></td>
                                     <td><?php echo $row->service_short_name; ?></td>
-                                    <td><?php echo $row->gst_rate; ?></td>
-                                    <td><?php echo $row->dw_share; ?></td>
-                                    <td><?php echo $row->partner_share; ?></td>
                                     <td><?php if($row->is_active=='1') {?><a class="label label-sm label-success" onclick="return confirm('Do you want to de-activate this Service ?');" href="<?php echo base_url();?>admin/services/status/<?php echo $row->service_id; ?>/0"><?php echo  'Active'; ?></a><?php }
                                      else { ?><a class="label label-sm label-danger" onclick="return confirm('Do you want to activate this Service ?');" href="<?php echo base_url();?>admin/services/status/<?php echo $row->service_id; ?>/1"><?php echo 'De-Active';?> </a> <?php } ?></td>
                                     <td><?php echo $postuserrow->first_name.' '.$postuserrow->last_name; ?></td>

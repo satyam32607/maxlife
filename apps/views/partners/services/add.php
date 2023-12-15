@@ -49,8 +49,8 @@
                             <div class="container">
                                 <!-- BEGIN PAGE BREADCRUMBS -->
                                 <ul class="page-breadcrumb breadcrumb">
-                                    <li> <a href="<?php echo base_url(); ?>schools/dashboard">Dashboard</a> <i class="fa fa-circle"></i> </li>
-                                    <li> <a href="<?php echo base_url(); ?>schools/students/view"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
+                                    <li> <a href="<?php echo base_url(); ?>partners/dashboard">Dashboard</a> <i class="fa fa-circle"></i> </li>
+                                    <li> <a href="<?php echo base_url(); ?>partners/services/view"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
                                     <li> <span><?php echo $heading; ?></span> </li>
                                 </ul>
                                 <!-- END PAGE BREADCRUMBS -->
@@ -84,7 +84,7 @@
                                                                             <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                     <label class="control-label">Document Name <?php echo $i ?> <span class="required"> * </span></label>
-                                                                                    <input type="text" class="form-control" <?php if($document->doc_status=="P" || $document->doc_status=="N" || empty($document->doc_status)) {?> name="document_name_1[]" <?php } ?> value="<?php echo $document->document_name1 ?>" <?php if($document->doc_status=="P" || $document->doc_status=="A") {?> readonly <?php } ?> required id="">
+                                                                                    <input type="text" class="form-control" <?php if($document->doc_status=="P" || $document->doc_status=="N" || empty($document->doc_status)) {?> name="document_name_1[]" <?php } ?> value="<?php echo $document->document_name1 ?>" <?php if($document->doc_status=="A") {?> readonly <?php } ?> required id="">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-2">

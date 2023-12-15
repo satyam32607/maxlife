@@ -13,10 +13,10 @@ class Services_model extends CI_Model
 			'service_short_name'    => $this->input->post("service_short_name"),
 			'service_description'  => $this->input->post("service_description"),
 			'hsn_code'     => $this->input->post("hsn_code"),
+			'service_price'     => $this->input->post("service_price"),
 			'gst_rate'     => $this->input->post("gst_rate"),
-			'dw_share'     => $this->input->post("dw_share"),
-			'partner_share'  => $this->input->post("partner_share"),
-			'short'     => $short,
+			'tds'     => $this->input->post("tds"),
+			//'short'     => $short,
 			'created_by'     => $this->session->userdata('user_id'),
 			'created_on'      => date('Y-m-d H:i:s'),
         );
@@ -76,10 +76,10 @@ class Services_model extends CI_Model
 			'service_short_name'    => $this->input->post("service_short_name"),
 			'service_description'  => $this->input->post("service_description"),
 			'hsn_code'     => $this->input->post("hsn_code"),
+			'service_price'     => $this->input->post("service_price"),
 			'gst_rate'     => $this->input->post("gst_rate"),
-			'dw_share'     => $this->input->post("dw_share"),
-			'partner_share'  => $this->input->post("partner_share"),
-			'short'     => $short,
+			'tds'     => $this->input->post("tds"),
+			//'short'     => $short,
 			'modified_on'      => date('Y-m-d H:i:s'),
 			);
 			$this->db->where('service_id', $service_id);

@@ -118,7 +118,6 @@ class Invoices_model extends CI_Model
 			$this->db->from('invoices');
 			$this->db->where('company_id', $this->session->userdata('master_id'));
 			$this->db->where('user_id', $this->session->userdata('user_id'));
-			$this->db->where('is_active', '1');
 			$this->db->order_by('invoice_no', 'DESC');
 			$query = $this->db->get();
 			//echo $this->db->last_query();
@@ -136,31 +135,29 @@ class Invoices_model extends CI_Model
 		
 
 
-	  function trainer_edit($user_id)
+	  function invoice_edit($invoice_id)
 		{
-			if ($user_id == '') {
-				redirect(base_url() . "vendors/trainers/view");
+			if ($invoice_id == '') {
+				redirect(base_url() . "partners/invoices/view");
 			}
 			$this->db->select('*');
-			$this->db->from('users');
-			$this->db->where('users.user_type', 'T');
-			$this->db->where('users.user_id', $user_id);
+			$this->db->from('invoices');
+			$this->db->where('invoice_id', $invoice_id);
 			$query = $this->db->get();
 			return $query->row();
 	
 		} //End of edit function
 	
 	
-		 function update_vendor($user_id)
+		 function update_invoice($invoice_id)
 		 {
 			$data = array(
-				'name'   => $this->input->post("trainer_name"),
-				'email'     => strtolower($this->input->post("email")),
-				'mobile_no1'     => $this->input->post("mobile_no1")
+				'invoice_date'   => $this->input->post("invoice_date"),
+				'user_remarks'     => strtolower($this->input->post("user_remarks")),
 			);
-			$this->db->where('user_id', $user_id);
-			$this->db->where('user_type','T');
-			$result = $this->db->update('users', $data);
+			$this->db->where('invoice_id', $invoice_id);
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$result = $this->db->update('invoices', $data);
 			if ($result)
 			   return 1;
 			 else
@@ -213,6 +210,28 @@ class Invoices_model extends CI_Model
 			return $result;
 	
 		} //End of View function
+
+		function update_status($invoice_id, $status)
+		{
+			 if($status=='1')
+			 {	$data = array(
+					'is_active' => $status,
+				);
+			 }
+			 else
+			 {
+				$data = array(
+					'is_active' => $status,
+				);
+			 }
+			$this->db->where('invoice_id', $invoice_id);
+			$result = $this->db->update('invoices', $data);
+			if($result)
+			  return '1';
+			 else 
+			 return '0';
+	
+		} //End of Update status function
 	
 
  

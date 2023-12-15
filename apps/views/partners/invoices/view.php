@@ -119,10 +119,10 @@
                                      elseif($row->admin_invoice_status=='na') {?><a class="label label-sm label-danger"><?php echo  'Not Approved'; } ?>
 									</td>
                                     <td><?php echo $admin_approve_date; ?> </td>
-                                     <td><?php if($row->is_active=='1') {?><a class="label label-sm label-success" onclick="return confirm('Do you want to de-activate this Invoice ?');" href="<?php echo base_url();?>admin/partners/status/<?php echo $row->user_id; ?>/0"><?php echo  'Active'; ?></a><?php }
-                                     else { ?><a class="label label-sm label-danger" onclick="return confirm('Do you want to activate this Invoice ?');" href="<?php echo base_url();?>partners/invoices/status/<?php echo $row->user_id; ?>/1"><?php echo 'De-Active';?> </a> <?php } ?></td>
+                                     <td><?php if($row->is_active=='1') {?><a class="label label-sm label-success" onclick="return confirm('Do you want to de-activate this Invoice ?');" href="<?php echo base_url();?>partners/invoices/status/<?php echo $row->invoice_id; ?>/0"><?php echo  'Active'; ?></a><?php }
+                                     else { ?><a class="label label-sm label-danger" onclick="return confirm('Do you want to activate this Invoice ?');" href="<?php echo base_url();?>partners/invoices/status/<?php echo $row->invoice_id; ?>/1"><?php echo 'De-Active';?> </a> <?php } ?></td>
                                      <td><?php echo date('d M, Y',strtotime($row->created_on));?></td>
-                                    <td><!--<a href="<?php echo base_url();?>partners/invoices/edit/<?php echo $row->user_id; ?>" title="Edit"><i class="fa fa-edit"></i></a>--></td>  
+                                    <td><?php if($row->company_invoice_status!='ap'): ?> <a href="<?php echo base_url();?>partners/invoices/edit/<?php echo $row->invoice_id; ?>" title="Edit"><i class="fa fa-edit"></i></a> <?php endif; ?></td>  
                       		       </tr>
                                      <?php 
 									  } 

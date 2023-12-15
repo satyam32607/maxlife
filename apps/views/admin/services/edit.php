@@ -111,7 +111,7 @@
                           
                           <div class="row">
                           
-                             <div class="col-md-12">
+                             <div class="col-md-6">
                               <div class="form-group">
                                 <label class="control-label">Service name <span class="required"> * </span></label>
                                 <?php
@@ -125,6 +125,23 @@
 									  );
 								   echo form_input($data);
 								   echo form_error('service_name');
+								  ?>
+                              </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="control-label">Service Price <span class="required"> * </span></label>
+                                <?php
+								    $data = array(
+									  'name'        => 'service_price',
+									  'id'          => 'service_price',	
+									  'value'       => set_value('service_price') ? $this->input->post("service_price") : $edit_data->service_price,			
+									  'maxlength'   => '10',
+									  'class'   => 'form-control',
+									  'required'   => 'required',
+									  );
+								   echo form_input($data);
 								  ?>
                               </div>
                             </div>
@@ -177,7 +194,7 @@
                             <div class="row">
                              <div class="col-md-6">
                               <div class="form-group">
-                                <label class="control-label">HSN Code <span class="required"> * </span></label>
+                                <label class="control-label">HSN/SAC <span class="required"> * </span></label>
                                 <?php
 								    $data = array(
 									  'name'        => 'hsn_code',
@@ -194,7 +211,7 @@
                             
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label class="control-label">GST Rate % <span class="required"> * </span> </label>
+                                <label class="control-label">GST % <span class="required"> * </span> </label>
                                 <?php
 								    $data = array(
 									  'name'        => 'gst_rate',
@@ -215,45 +232,23 @@
                           <div class="row">
                              <div class="col-md-6">
                               <div class="form-group">
-                                <label class="control-label">DW Share % <span class="required"> * </span></label>
+                                <label class="control-label">TDS % <span class="required"> * </span></label>
                                 <?php
 								    $data = array(
-									  'name'        => 'dw_share',
-									  'id'          => 'dw_share',	
-									  'value'       => set_value('dw_share') ? $this->input->post("dw_share") : $edit_data->dw_share,			
+									  'name'        => 'tds',
+									  'id'          => 'tds',	
+									  'value'       => set_value('tds') ? $this->input->post("tds") : $edit_data->tds,			
 									  'maxlength'   => '10',
 									  'class'   => 'form-control',
 									  'required'   => 'required',
 									  );
 								   echo form_input($data);
-								   echo form_error('dw_share');
+								   echo form_error('tds');
 								  ?>
                               </div>
                             </div>
                             
                             <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="control-label">Partner Share % <span class="required"> * </span> </label>
-                                <?php
-								    $data = array(
-									  'name'        => 'partner_share',
-									  'id'          => 'partner_share',	
-									  'value'       => set_value('partner_share') ? $this->input->post("partner_share") : $edit_data->partner_share,			
-									  'maxlength'   => '10',
-									  'class'   => 'form-control',
-									  );
-								   echo form_input($data);
-								   echo form_error('partner_share');
-								  ?>
-                              </div>
-                            </div>
-                            
-                          </div>
-                          <!--/row-->
-                          
-                             
-                             <div class="row">
-                              <div class="col-md-8">
                               <div class="form-group">
                               <label>Service Description </label>
                                <?php $data = array(
@@ -271,11 +266,9 @@
                             
                             
                           </div>
-                          
                           <!--/row-->
-                             
                           
-                                      
+                                     
                        </div>                     
                         <div class="form-actions">
                           <div class="row">

@@ -76,7 +76,7 @@ class Services_model extends CI_Model
 		
 			// Ensure the upload directory exists
 			if (!is_dir($uploadPath)) {
-				mkdir($uploadPath, 0755, true);
+				mkdir($uploadPath, 0777, true);
 			}
 		
 			for ($i = 0; $i < $totalDocuments; $i++) {
@@ -96,12 +96,13 @@ class Services_model extends CI_Model
 						$file_name = $uploadedFile;
 						$destination = $uploadPath . $partnerId . '/' . $file_name;
 						if (!is_dir($uploadPath.$partnerId)) {
-							mkdir($uploadPath.$partnerId, 0755, true);
+							mkdir($uploadPath.$partnerId, 0777, true);
 						}
 						$oldFile	=	$uploadPath . $partnerId . '/' .$this->db->from("user_service_documents")->where('service_document_id', $serviceDocumentId)->get()->result()[0]->document_file_name1;
 						if(file_exists($oldFile))
 						{
-							unlink($oldFile);
+							
+							//unlink($oldFile);
 						}
 						// Move the uploaded file to the destination
 						if (move_uploaded_file($_FILES[$fieldName]['tmp_name'][$i], $destination)) {
