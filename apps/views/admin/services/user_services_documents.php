@@ -83,6 +83,7 @@
                                     <?php
 									  if(is_array($results))
 									  {  $srno=0; 
+                      $documentAction = 0;
 										 foreach($results as $row) {
                       if($row->document_name1=="" || empty($row->document_name1))
                       {
@@ -101,6 +102,7 @@
                                         <?php if($row->doc_status!="P" && !empty($row->doc_status)){ ?>
                                             <span> <?php echo $row->doc_status=="A" ? "Approved" : "Not Approved" ?> </span>
                                             <?php } else{ ?>
+                                              <?php $documentAction =1; ?>
                                             <span style="cursor: pointer;" onclick="submitResponse(this,'<?php echo  $row->service_document_id ?>','A')"><i class="fa fa-check"></i></span>
                                             &nbsp; &nbsp;
                                             <span style="cursor: pointer;" onclick="submitResponse(this,'<?php echo  $row->service_document_id ?>','N')"><i class="fa fa-times"></i></span>    
@@ -112,12 +114,14 @@
 									} ?>
                                 </tbody>
                             </table>
+                            <?php if($documentAction) { ?>
                             <form action="<?php echo base_url() . 'admin/companies/partner_service_document_action' ?>" id="action-form" method="get">
                                 <input type="hidden" name="document_id" id="document_id">
                                 <input type="hidden" name="action" id="action">
                                 <input type="hidden" name="remarks" id="remarks">
                                 <input type="submit" value="Submit" class="btn btn-primary m-b-20 pull-right" id="button-submit" disabled>
                             </form>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
