@@ -90,16 +90,16 @@
 
               <div class="row">
 
-                <div class="col-md-8">
+                <div class="col-md-12">
 
                   <ul class="page-breadcrumb breadcrumb">
 
                     <li> <a href="<?php echo base_url(); ?>dashboard">Dashboard</a> <i class="fa fa-circle"></i> </li>
 
-                    <li> <a href="#"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
+                    <li> <a href="<?php echo base_url() ?>admin/invoices/view/<?php echo $invoice_id; ?>"><?php echo $main_heading; ?></a> <i class="fa fa-circle"></i> </li>
 
                     <li> <span><?php echo $heading; ?></span> </li>
-
+                    <a class="btn btn-circle btn-success pull-right m-b-20" href="<?php echo base_url() ?>admin/invoices/form/<?php echo $invoice_id; ?>">Add Invoice Payment</a>
                   </ul>
 
                 </div>
@@ -129,8 +129,7 @@
                         <div class="caption">
 
                             <i class="fa fa-envelope"></i> <?php echo $heading; ?>: <?php echo '('.$num_rows.')'; ?></div>
-
-                    </div>
+                        </div>
 
                     <div class="portlet-body">
 
@@ -144,23 +143,19 @@
 
                               <th> Srno. </th>
 
-                              <th> Invoice No. </th>
+                              <th> Transaction Id</th>
 
-                              <th> Invoice Date</th>
+                              <th> Transaction Amount</th>
 
-                              <th> Invoice format</th>
+                              <th> Transaction Date</th>
 
-                              <th> Remarks</th>
+                              <th> Transaction Detail</th>
 
-                               <th> Admin Status</th>
+                               <th> Payment Mode</th>
 
-                              <th> Admin Update On</th>
+                              <th> Created By</th>
 
-                              <th> Company Status </th>
-
-                              <th> Company Update On</th>
-
-                               <th> Created On</th>
+                              <th> Transaction Status </th>
 
                              </tr>
 
@@ -177,28 +172,14 @@
                                 foreach($results as $row) {
 
                                 $srno++;
-
-								
-
-								if($row->company_approve_date!=NULL && $row->company_approve_date!='0000-00-00 00:00:00')	
-
-								 $company_approve_date =  date('d M, Y',strtotime($row->company_approve_date));
-
-								 else
-
-								 $company_approve_date='';
-
-								 
-
-								 if($row->admin_approve_date!=NULL  && $row->admin_approve_date!='0000-00-00 00:00:00')	
-
-								 $admin_approve_date =  date('d M, Y',strtotime($row->admin_approve_date));
-
-								 else
-
-								 $admin_approve_date='';
-
-								 
+								 if($row->transaction_status=="P")
+                                 {
+                                    $status     =   "Pending";
+                                 }
+                                 else
+                                 {
+                                    $status     =   "Confirmed";
+                                 }
 
 						        ?>    
 
@@ -206,42 +187,28 @@
 
                                     <td><?php echo $srno; ?> </td>
 
-                                    <td><?php echo invoice_no_format.$row->invoice_no; ?></td>
+                                    <td><?php echo $row->transaction_id; ?></td>
 
-                                    <td><?php echo date('d M, Y',strtotime($row->invoice_date));?></td>
+                                    <td><?php echo $row->transaction_amount;?></td>
 
-                                     <td align="center"><a href="<?php echo base_url(); ?>admin/invoices/details/<?php echo $row->invoice_id; ?>/<?php echo $row->user_id; ?> "><i class="icon-envelope"></i></a>
-                                        &nbsp;&nbsp;
-                                        <a href="<?php echo base_url(); ?>admin/invoices/view_invoice_payments/<?php echo $row->invoice_id; ?>"><i class="icon-list"></i></a>
-                                     </td>
+                                    <td><?php echo date('d M, Y',strtotime($row->transaction_date));?></td>
 
-                                    <td><?php echo $row->user_remarks;?></td>
+                                    <td><?php echo $row->transaction_detail;?></td>
 
-                                     <td><?php if($row->admin_invoice_status=='ap') {?><a class="label label-sm label-success" onclick="return confirm('Do you want to Not Approve this Invoice ?');" href="<?php echo base_url();?>admin/invoices/status/<?php echo $row->invoice_id; ?>/na"><?php echo  'Approved'; ?></a><?php }
-
-                                     else { ?><a class="label label-sm label-danger" onclick="return confirm('Do you want to Approve this Invoice ?');" href="<?php echo base_url();?>admin/invoices/status/<?php echo $row->invoice_id; ?>/ap"><?php echo 'Not Approved';?> </a> <?php } ?></td>
-
-                                     
-
-                                  
-
-                                     <td><?php echo $admin_approve_date;?></td>
-
-                                      <td><?php if($row->company_invoice_status=='ap') {?><a class="label label-sm label-success"><?php echo  'Approved'; ?></a><?php }
-
-									 elseif($row->company_invoice_status=='pe') {?><a class="label label-sm label-danger"><?php echo  'Pending'; } 
-
-                                     elseif($row->company_invoice_status=='na') {?><a class="label label-sm label-danger"><?php echo  'Not Approved'; } ?>
-
-									</td>
-
-                                    <td><?php echo $company_approve_date;?></td>
-
+                                    <td><?php echo $row->payment_mode;?></td>
                                     
-
-                                     <td><?php echo date('d M, Y',strtotime($row->created_on));?></td>
-
-                                   </tr>
+                                    <td><?php echo $row->name;?></td>
+                                    <?php if($row->transaction_status!="P"){ ?>
+                                        <td><?php echo $status;?></td>
+                                    <?php } else { ?>
+                                        <td>
+                                            <select onchange="changeStatus('<?php echo $row->invoice_payment_id; ?>',this)">
+                                                <option value="P">Pending</option>
+                                                <option value="C">Confirmed</option>
+                                            </select>
+                                        </td>
+                                    <?php }?>
+                                    </tr>
 
                                      <?php 
 
@@ -300,6 +267,39 @@
 </div>
 
 <?php $this->load->view("includes/scripts.php");?>
+
+<script>
+    function changeStatus(invoicePaymentId,selectObject)
+    {
+        if(confirm("Are you sure ?"))
+        {
+          var baseUrl           =   "<?php echo base_url() ?>";
+          var selectVal   =   $(selectObject).val();
+          $.ajax({
+            url: `${baseUrl}admin/Invoices/updatePaymentStatus`, // Replace with your URL
+            type: 'GET', // GET or POST, depending on your method
+            data: {
+              invoice_payment_id: invoicePaymentId, // Replace with your data keys and values
+              payment_status: selectVal
+            },
+            success: function(response) {
+              $(selectObject).parent("td").text("Confirmed");
+                // This function is called if the request succeeds
+                // 'response' contains the data returned from the server
+                
+            },
+            error: function(xhr, status, error) {
+                // This function is called if the request fails
+                console.log('Error: ' + error);
+            }
+        });
+      }
+      else
+      {
+          $(selectObject).find(`option[value="P"]`).prop("selected", true);
+      }
+    }
+</script>
 
 </body>
 
